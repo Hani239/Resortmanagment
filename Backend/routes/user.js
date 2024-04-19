@@ -6,6 +6,7 @@ const FoodCat = require('../modals/foodcat')  //Update the path to FoodCategory
 const JWT_SECRET = 'yourSecretKey';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Room = require('../modals/roommodel')
 
 router.post("/createuser", async (req, res) => {
   try {
@@ -61,31 +62,32 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/createroom", async (req, res) => {
-  try {
-    const { roomname,discription, price ,capacity } = req.body;
+router.post('/createroom', (req, res) => {
+  const { roomname, description, price, capacity, imageUrl } = req.body;
 
-    // Check if room already exists
-    const roomExists = await Room.findOne({ roomname });  
-
-    if (roomExists) {
-      return res.status(400).json({ message: "Room already exists." });
-    }
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Create new Room
-    const newRoom = new Room({  roomname,discription, price ,capacity });
-    const savedRoom = await newRoom.save();
-
-    // Generate JWT for the new user
-    const token = jwt.sign({ id: savedRoom._id }, JWT_SECRET, { expiresIn: '1h' });
-
-    res.status(201).json({ token, user: { id: savedRoom._id,  roomname,discription, price ,capacity} }); // Respond with token and room info 
-  } catch (err) {
-    res.status(500).json({ error: err.message || "An error occurred" });
+  // Check if all required fields are provided
+  if (!roomname || !description || !price || !capacity || !imageUrl) {
+    return res.status(422).json({ error: "Please add all the fields" });
   }
+
+  // Create a new room using the Room model
+  const room = new Room({
+    roomname,
+    description,
+    price,
+    capacity,
+    imageUrl
+  });
+
+  // Save the room to the database
+  room.save().then(result => {
+    res.status(201).json({ room: result });
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json({ error: "Failed to save the room" });
+  });
 });
+
 
 
 router.post("/foodcat", async (req, res) => {
