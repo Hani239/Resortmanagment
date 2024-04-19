@@ -62,26 +62,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// router.post("/createroom", async (req, res) => {
-//   try {
-//     const { roomname, description, imageUrl } = req.body;
-
-//     // Check if room already exists
-//     const roomExists = await Room.findOne({ roomname });  
-//     if (roomExists) {
-//       return res.status(400).json({ message: "Room already exists." });
-//     }
-
-//     try {
-//       const newRoom = new Room({ roomname, description, imageUrl });
-//       await newRoom.save();
-//       res.status(201).send(newRoom);
-//     } catch (error) {
-//       res.status(400).json({ message: error.message });
-//     }
-// });
-
-
 router.post('/createroom', (req, res) => {
   const { roomname, description, price, capacity, imageUrl } = req.body;
 
