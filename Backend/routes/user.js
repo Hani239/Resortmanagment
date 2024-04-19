@@ -6,6 +6,7 @@ const FoodCat = require('../modals/foodcat')  //Update the path to FoodCategory
 const JWT_SECRET = 'yourSecretKey';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Room = require('../models/roommodal');
 
 router.post("/createuser", async (req, res) => {
   try {
@@ -61,30 +62,45 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/createroom", async (req, res) => {
-  try {
-    const { roomname,discription, price ,capacity } = req.body;
+// router.post("/createroom", async (req, res) => {
+//   try {
+//     const { roomname, description, imageUrl } = req.body;
 
-    // Check if room already exists
-    const roomExists = await Room.findOne({ roomname });  
+//     // Check if room already exists
+//     const roomExists = await Room.findOne({ roomname });  
+//     if (roomExists) {
+//       return res.status(400).json({ message: "Room already exists." });
+//     }
 
-    if (roomExists) {
-      return res.status(400).json({ message: "Room already exists." });
-    }
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(password, salt);
+//     try {
+//       const newRoom = new Room({ roomname, description, imageUrl });
+//       await newRoom.save();
+//       res.status(201).send(newRoom);
+//     } catch (error) {
+//       res.status(400).json({ message: error.message });
+//     }
+// });
 
-    // Create new Room
-    const newRoom = new Room({  roomname,discription, price ,capacity });
-    const savedRoom = await newRoom.save();
 
-    // Generate JWT for the new user
-    const token = jwt.sign({ id: savedRoom._id }, JWT_SECRET, { expiresIn: '1h' });
-
-    res.status(201).json({ token, user: { id: savedRoom._id,  roomname,discription, price ,capacity} }); // Respond with token and room info 
-  } catch (err) {
-    res.status(500).json({ error: err.message || "An error occurred" });
+router.post('/createpost', (req, res) => {
+  const { title, body, pic } = req.body;
+  if (!title || !body || !pic) {
+    return res.status(422).json({error: "Please add all the fields"});
   }
+  
+  const room = new Room({
+      title,
+      body,
+      photo: pic,
+      // postedBy: req.user  // Uncomment this if you have user authentication
+  });
+
+  room.save().then(result => {
+      res.json({ room: result });
+  }).catch(err => {
+      console.log(err);
+      res.status(500).json({error: "Failed to save the room"});
+  });
 });
 
 
