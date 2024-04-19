@@ -3,7 +3,7 @@ import Nav from '@/component/Nav_Exp'
 import Img from '@/Img/ImgC/1_1.png'
 import Footer from '@/container/Footer'
 
-import Wish_item from '@/component/Wish_item'
+import Wish_item from '@/component/Menu_item'
 import Empty from '@/component/Wish_Empty'
 
 export default function Home() {
@@ -18,11 +18,11 @@ export default function Home() {
                <h1 className='text-6xl font-playpen' >Wishlist</h1>
                
                   <Empty />               
-               <div className=' w-full'>
+               {/* <div className=' w-full'>
                       <Wish_item text='10-pack Hair Elastics' src={Img} pricex={200} alt={''} bg={''} />
                       <Wish_item text='10-pack Hair Elastics' src={Img} pricex={200} alt={''} bg={''} />
                        
-             </div>
+             </div> */}
         </div></center>
       
        <div>

@@ -13,7 +13,7 @@ const Product = ({ src, alt, className, bg, priceCss, name, real_price, price, r
   return (
 
     <div className='inline-block'>
-      <div className={`relative group border-solid border-2 rounded-lg grid justify-center items-center ${bg}`}>
+      <div className={`relative group border-none rounded-lg grid justify-center items-center ${bg}`}>
         <div>
           <Image
             src={src}
@@ -42,7 +42,7 @@ const Product = ({ src, alt, className, bg, priceCss, name, real_price, price, r
       <div className='relative flex flex-col mx-10 overflow-hidden pb-8'>
         <div className='absolute pt-0 text-lg font-inter'>{name}</div>
         <div className={`text-lg ${priceCss}`}></div>
-        <div className=' block b-0 py-2 font-inter pt-5'>${price}</div>
+        <div className=' block b-0 py-2 font-inter pt-5'>₹{price}</div>
       </div>
     </div>
   );

@@ -1,10 +1,11 @@
 import Baby_image2 from '@/component/Insta_Comp'
 import React from 'react'
 import Image from 'next/image'
-import pic1 from '@/Img/ImgC/baby_1.jpg'
-import pic2 from '@/Img/ImgC/Children.jpg'
-import pic3 from '@/Img/ImgC/children_3.jpg'
-import pic4 from '@/Img/ImgC/Child.jpg'
+import pic1 from '@/Img/images/Images/G5.jpg'
+import pic2 from '@/Img/images/Images/G2.jpg'
+import pic3 from '@/Img/images/Images/G3.jpg'
+import pic4 from '@/Img/images/Images/G4.jpg'
+
 
 type Props = {}
 

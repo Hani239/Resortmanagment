@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/component/Multi-Slider/MultiRangeSlider.js", "src/component/Multi-Slider/App/Apps.js"],
   "exclude": ["node_modules"]
 }

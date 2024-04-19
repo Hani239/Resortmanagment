@@ -1,12 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
-import Item5 from '@/Img/ImgR/t.jpg'
+import Item5 from '@/Img/images/Images/the-drink-4288602_1280-1024x682.jpg'
 import Item6 from '@/Img/path-1.png'
 import Item7 from '@/Img/ImgR/icons8-pin-50.png'
 import Item8 from '@/Img/ImgR/icons8-message-32.png'
 import Button from '@/component/Button'
 import Msg from '@/Img/icons8-message-100.png'
 import Pin from '@/Img/icons8-pin-96.png'
+import Link from 'next/dist/client/link'
 type Props = {}
 
 const Categories = (props: Props) => {
@@ -33,13 +34,9 @@ const Categories = (props: Props) => {
         <p className='flex text-center font-bold text-xl m-2 '>Find us</p>
         <p className='flex text-center font-light text-xs mt-2'>7310 Fieldstone Lane <br />Brooklyn, NY 11220 </p>
         <p className='flex text-center font-light text-xs mb-2'> Mon – Fri: 9am – 3pm</p>
-        <Button text="Get Direction" className='py-2 m-2' />
+        <Link href={'https://www.google.com/maps/place/LDRP+Institute+of+Technology+and+Research/@23.2393335,72.6361559,17z/data=!3m1!4b1!4m6!3m5!1s0x395c2b933477ba9f:0xe440409e66bea08a!8m2!3d23.2393286!4d72.6387308!16s%2Fm%2F07s50xh?entry=ttu'}><Button text="Get Direction" className='py-2 m-2' /></Link>
       </div>
     </div>
-
-
-
-
   )
 }
 

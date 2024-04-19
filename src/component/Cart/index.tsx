@@ -3,8 +3,8 @@ import React, { FC, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-import pic1 from '../../Img/Giraffe.jpg'
-import pic2 from '../../Img/Rainbow.jpeg'
+import pic1 from '@/Img/images/Images/1.jpg'
+import pic2 from '@/Img/images/Images/2.jpg'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Link from 'next/link'
 
@@ -26,23 +26,23 @@ interface CartProps {
 const products: Product[] = [
   {
     id: 1,
-    name: 'Giraffe Slub Knit T-Shirt',
+    name: 'A Shape Room',
     href: '#',
-    color: 'Green',
-    price: '$16.99',
+    color: '',
+    price: '7000',
     quantity: 1,
     imageSrc: pic1,
-    imageAlt: 'Giraffe Slub Knit T-Shirt',
+    imageAlt: 'A Shape Room',
   },
   {
     id: 2,
-    name: 'Rainbow soft toy',
+    name: 'Sky Room',
     href: '#',
-    color: 'Multi',
-    price: '$19.99',
+    color: '',
+    price: '9000',
     quantity: 1,
     imageSrc: pic2,
-    imageAlt:'Rainbow soft toy',
+    imageAlt:'Sky Room',
   },
 ];
 
@@ -122,7 +122,7 @@ const Cart: FC = () => {
                                       <h3>
                                         <a href={product.href}>{product.name}</a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">₹{product.price}</p>
                                     </div>
                                     <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                                   </div>
@@ -149,7 +149,7 @@ const Cart: FC = () => {
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$36.98</p>
+                        <p>₹16000</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">

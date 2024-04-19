@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import logo from '@/Img/ImgFT/Logo-1.svg'
+import logo from '@/Img/images/Logo(1).png'
 import { IoMdHeartEmpty } from "react-icons/io";
 import { AiOutlineUser } from 'react-icons/ai';
 import { IoCartOutline } from "react-icons/io5";
@@ -52,8 +52,8 @@ const Nav = ({ className, children, ...props }: Props) => {
                                                 onMouseEnter={toggleDropdown}
                                                 onMouseLeave={toggleDropdown}
                                             >
-                                                <a href="#" className="font-sans text-black hover:text-red-500">Clothing</a>
-                                                {showDropdown && (
+                                                <a href="/List" className="font-sans text-black hover:text-red-500">Accomodation</a>
+                                                {/* {showDropdown && (
                                                     <ul className="absolute top-5 left-0 mt-2 w-80 bg-white rounded-md shadow-lg py-2">
                                                         
                                                         <li><Link href="/List" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Newborn (0 m - 3 m)</Link></li>
@@ -61,11 +61,13 @@ const Nav = ({ className, children, ...props }: Props) => {
                                                         <li><Link href="/List" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Boys (3 m - 6 y)</Link></li>
                                                         
                                                     </ul>
-                                                )}
+                                                )} */}
                                             </li>
-                                            <li><Link href="/List" className="font-sans text-black hover:text-red-500 cursor-pointer transform transition-transform duration-300 ">Toys</Link></li>
+                                            <li><Link href="/List" className="font-sans text-black hover:text-red-500 cursor-pointer transform transition-transform duration-300 ">Events</Link></li>
                                             <li className="font-sans text-black hover:text-red-500 cursor-pointer transform transition-transform duration-300 "><a href="#">About</a></li>
                                             <li className="font-sans text-black hover:text-red-500 cursor-pointer transform transition-transform duration-300 "><a href="#">Contact</a></li>
+                                            <li className="font-sans text-black hover:text-red-500 cursor-pointer transform transition-transform duration-300 "><Link href="/AdminDash">Admin</Link></li>
+                                       
                                         </ul>
                                     </div>
                                 </div>

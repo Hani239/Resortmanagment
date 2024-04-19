@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'next/image';
-import MainI from '@/Img/Img_View/MFTShirt.jpg'
-import Side1 from '@/Img/Img_View/FTShirt.jpg'
-import Side2 from '@/Img/Img_View/BTshirt.jpg'
-import Side3 from '@/Img/Img_View/CTshirt.jpg'
+import MainI from '@/Img/images/images/ViewMain.jpg'
+import Side1 from '@/Img/images/images/V1.jpg'
+import Side2 from '@/Img/images/images/V2.jpg'
+import Side3 from '@/Img/images/images/V3.jpg'
 import { CgRuler } from "react-icons/cg";
 import DropdownColor from './Dropdown';
 import DropdownSize from './Drodown2';
@@ -20,7 +20,7 @@ const View = ({ className, children, ...props }: Props) => {
             <div className='flex flex-wrap mt-48 mx-12 ml-6 mr-6 md:ml-20 md:mr-20 '>
                 <div className='flex flex-wrap md:flex-1 h-full  object-contain sticky'>
                     <div className='flex  w-full sm:w-full md:w-full lg:w-full aspect-auto  xl:w-5/6  justify-center  object-cover'>
-                        <Image src={MainI} alt="Product Image" className='w-full ' />
+                        <Image src={MainI} alt="Product Image" className='w-full h-full' />
                     </div>
                     <div className='flex flex-wrap w-full md:w-full lg:w-full xl:w-1/6 align-top  lg:h-72'>
                         <Image src={Side1} alt="Product Image " className='aspect-square shrink-0 w-1/3 md:w-1/3 lg:w-1/3  p-1 xl:w-full lg:aspect-square lg:h-40 xl:h-auto opacity-80 hover:opacity-100' />
@@ -29,25 +29,27 @@ const View = ({ className, children, ...props }: Props) => {
                     </div>
                 </div>
                 <div className='flex flex-1 flex-col h-auto md:pl-14 pt-5'>
-                    <div className='font-inter text-sm'>ZARA</div>
-                    <div className='font-playpen text-4xl py-2 font-semibold'>Giraffe Slub Knit T-Shirt</div>
+                    <div className='font-inter text-sm'>Featured Room</div>
+                    <div className='font-playpen text-4xl py-2 font-semibold'>A Room</div>
                     <div className='inline-flex gap-2'>
                         <div className='font-inter text-md font-semibold'>SKU:</div>
-                        <div className='font-playpen'>1237/132</div>
+                        {/* <div className='font-playpen'>1237/132</div> */}
                     </div>
                     <div className='font-playpen font-semibold text-xl py-8'>
-                        $16.99
+                    ₹7000
                     </div>
-                    <div className='inline-flex items-center gap-3 text-sm'>
+                    {/* <div className='inline-flex items-center gap-3 text-sm'>
                         <CgRuler size={24} /><a href='#' className='underline'>Size Guide</a>
-                    </div>
+                    </div> */}
                     <div className='my-5'>
-                        <div className='font-inter text-md'>Color: </div>
-                        <div className='mt-1'><DropdownColor /></div>
+                        <div className='font-inter text-md'>Check In Date </div>
+                        {/* <div className='mt-1'><DropdownColor /></div> */}
+                        <input type='date' className='p-2 border border-solid rounded-lg' />
                     </div>
                     <div className='mb-5'>
-                        <div className='font-inter text-md'>Size: </div>
-                        <div className='mt-1'><DropdownSize /></div>
+                        <div className='font-inter text-md'>Check Out Date</div>
+                        {/* <div className='mt-1'><DropdownSize /></div> */}
+                        <input type='date' className='p-2 border border-solid rounded-lg' />
                     </div>
                     <div className='inline-flex gap-2 mb-5'>
                         <div className='flex border border-1 rounded-lg shadow-inner'><input type="number" min="0" placeholder='0' className='w-20 rounded-lg text-center' /></div>

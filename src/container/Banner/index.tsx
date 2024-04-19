@@ -1,7 +1,9 @@
 import React from "react";
 import clsx from 'clsx';
 import Image from 'next/image'
-import img from '@/Img/Banner_Baby.jpg'
+// import img from '@/Img/Banner_Baby.jpg'
+
+import img from '@/Img/images/edvin-johansson-rlwE8f8anOc-unsplash.jpg'
 import Sun from '@/Img/sun.png'
 import Red from '@/Img/banner-red-dot.png'
 import Wave from '@/Img/Banner_Wave.png'
@@ -43,7 +45,7 @@ const Banner = ({ className, children, ...props }: Props) => {
                             alt="Heart"
                             className="object-cover "
                         />
-                        <p className='text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold font-playpen'>Loved by mums. Made for babies.</p>
+                        <p className='text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold font-playpen'>Experience A World Of Comfort.</p>
                     
 
                     <div className="mt-3 lg:mt-5">
@@ -62,15 +64,15 @@ const Banner = ({ className, children, ...props }: Props) => {
                 className="object-cover w-16 absolute bottom-0 left-1/3 -z-10 md:block hidden"
             />
             <div className="flex md:flex-1 h-auto m-5 md:mt-28 relative md:mr-20">
-            <Image
+            {/* <Image
                 src={Rainbow}
                 alt="Rainbow"
                 className="absolute w-24 left-1/2 -top-5 md:top-1/2 md:-left-10 md:w-32 z-0"
-            />
+            /> */}
                 <Image
                     src={img}
                     alt="Baby_Img"
-                    className=" "
+                    className=" border rounded-lg"
                 />
                 <Image
                     src={Wave}
@@ -80,7 +82,7 @@ const Banner = ({ className, children, ...props }: Props) => {
                 <Image
                     src={Sun}
                     alt="Sun"
-                    className="w-24 object-cover absolute m-6 top-0"
+                    className="w-24 object-cover absolute m-6 top-0 md:block hidden"
                 />
             </div>
             {/* <div className=''>

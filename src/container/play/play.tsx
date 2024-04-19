@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import pic from '@/Img/ImgC/jiraaf.png'
+import pic from '@/Img/images/company-female-friends-having-a-party-1.png'
 import pic2 from '@/Img/ImgC/roundlines.svg'
 import pic3 from '@/Img/ImgC/reddot.svg'
 import pic4 from '@/Img/ImgC/dots.svg'
@@ -26,11 +26,11 @@ const Play = (props: Props) => {
                     
                     <div className='flex flex-wrap justify-center gap-5 items-center mx-6 '>
                         <div className=''>
-                            <p className='font-dancing_script text-6xl font-semibold '>Play Debebe</p>
-                            <p className='font-playpen text-4xl'>Our Handmade toys</p>
+                            <p className='font-dancing_script text-6xl font-semibold '>Wedding's & Events</p>
+                            <p className='font-playpen text-4xl'>Celebrate your special day </p>
                             <br />
                             <div className='flex '>
-                                <Button text='Shop Now ' />
+                                <Button text='Book Events' />
                             </div>
                         </div>
                         <div className=''>

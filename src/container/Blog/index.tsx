@@ -1,13 +1,17 @@
 import React from 'react'
 import Image from 'next/image'
-import Img1 from '@/Img/Img1.webp'
-import Img2 from '@/Img/Img2.webp'
+// import Img1 from '@/Img/Img1.webp'
+// import Img2 from '@/Img/Img2.webp'
+import Img2 from '@/Img/images/chad-montano-MqT0asuoIcU-unsplash.jpg'
+import Img1 from '@/Img/images/eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg'
 import Img3 from '@/Img/hand-hear.png'
 import wave4 from '@/Img/Header-Gray-Flip.png'
 import Img4 from '@/Img/shape-left.png'
 import Img5 from '@/Img/Group-26.png'
 import Oval_Red from '@/Img/Oval-red.png'
 import path from '@/Img/path.png'
+import Button from '@/component/Button'
+import Link from 'next/link'
 type Props = {} & React.HTMLAttributes<HTMLElement>;
 
 const Blog = ({ className, children, ...props }: Props) => {
@@ -38,11 +42,11 @@ const Blog = ({ className, children, ...props }: Props) => {
 
         <div className='relative w-full md:w-1/3 lg:w-1/3 flex sm:flex-1 sm:justify-center h-auto'>
           <div className='flex flex-col absolute top w-full p-5 lg:px-20'>
-            <p className='font-inter sm:text-xs'>SEE YA WINTER</p>
+            <p className='font-inter sm:text-xs'>MultiCuisine </p>
             <br />
-            <p className='font-playpen text-2xl sm:text-4xl font-semibold'>Handmade with love in New York</p>
+            <p className='font-playpen text-2xl sm:text-4xl font-semibold'>For the love of delicious food.</p>
             <br />
-            <p className='md:font-inter text-xs md:text-xs' >Designed and made in our studio in New York, our range gives little ones the confidence to explore the world whilst inspiring them through fun and colourful designs, with some style along the way.</p>
+            <p className='md:font-inter text-xs md:text-xs' >Its All About The Food that makes you say wow. Best Food Varieties You Will Get Here Yummy Combos And Many More.</p>
           </div>
         </div>
         <div className='relative z-0 w-1/3 md:w-1/3 lg:w-1/3 sm:flex-1 flex h-auto'>
@@ -57,7 +61,7 @@ const Blog = ({ className, children, ...props }: Props) => {
             <Image
               src={Img2}
               alt="Center Baby Image"
-              className="w-3/5 object-cover rounded-xl bottom-12 -left-5 lg:bottom-28 lg:-left-32 md:bottom-72 md:-left-10 sm:bottom-96 sm:-left-5 absolute"
+              className="w-3/5  object-cover rounded-xl bottom-12 -left-5 lg:bottom-14 lg:-left-32 md:bottom-72 md:-left-10 sm:bottom-96 sm:-left-5 absolute"
             />
             <Image
               src={Oval_Red}
@@ -79,9 +83,10 @@ const Blog = ({ className, children, ...props }: Props) => {
               className="invisible sm:visible h-auto w-24 float-left mb-20"
             />
             <div className='4'>
-              <p className='md:font-inter text-xs mb-8 md:text-xs'>We’re committed to using the highest quality fabrics and prints and ensure they are either GOTS certified organic or OEKO-TEX standard 100, so they are perfect for young skin.
+              <p className='md:font-inter text-xs mb-8 md:text-xs'>We’re committed to using the highest quality Food Items and ensure they are Hygenic, so they are perfect for Your Health.
               </p>
-              <a href='#' className='font-playpen text-bold mb-8'>Read More</a>
+              <Link href={'/Food_menu'} ></Link><Button text="Explore Menu"></Button>
+              {/* <a href='#' className='font-playpen text-bold mb-8'></a> */}
             </div>
           </div>
         </div>
