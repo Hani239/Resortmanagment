@@ -6,7 +6,7 @@ const FoodCat = require('../modals/foodcat')  //Update the path to FoodCategory
 const JWT_SECRET = 'yourSecretKey';
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Room = require('../models/roommodal');
+const Room = require('../modals/roommodel')
 
 router.post("/createuser", async (req, res) => {
   try {
@@ -82,26 +82,32 @@ router.post("/login", async (req, res) => {
 // });
 
 
-router.post('/createpost', (req, res) => {
-  const { title, body, pic } = req.body;
-  if (!title || !body || !pic) {
-    return res.status(422).json({error: "Please add all the fields"});
+router.post('/createroom', (req, res) => {
+  const { roomname, description, price, capacity, imageUrl } = req.body;
+
+  // Check if all required fields are provided
+  if (!roomname || !description || !price || !capacity || !imageUrl) {
+    return res.status(422).json({ error: "Please add all the fields" });
   }
-  
+
+  // Create a new room using the Room model
   const room = new Room({
-      title,
-      body,
-      photo: pic,
-      // postedBy: req.user  // Uncomment this if you have user authentication
+    roomname,
+    description,
+    price,
+    capacity,
+    imageUrl
   });
 
+  // Save the room to the database
   room.save().then(result => {
-      res.json({ room: result });
+    res.status(201).json({ room: result });
   }).catch(err => {
-      console.log(err);
-      res.status(500).json({error: "Failed to save the room"});
+    console.log(err);
+    res.status(500).json({ error: "Failed to save the room" });
   });
 });
+
 
 
 router.post("/foodcat", async (req, res) => {
