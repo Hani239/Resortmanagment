@@ -65,12 +65,10 @@ router.post("/login", async (req, res) => {
 router.post('/createroom', (req, res) => {
   const { roomname, description, price, capacity, imageUrl } = req.body;
 
-  // Check if all required fields are provided
   if (!roomname || !description || !price || !capacity || !imageUrl) {
     return res.status(422).json({ error: "Please add all the fields" });
   }
 
-  // Create a new room using the Room model
   const room = new Room({
     roomname,
     description,
@@ -79,15 +77,27 @@ router.post('/createroom', (req, res) => {
     imageUrl
   });
 
-  // Save the room to the database
-  room.save().then(result => {
-    res.status(201).json({ room: result });
-  }).catch(err => {
-    console.log(err);
-    res.status(500).json({ error: "Failed to save the room" });
-  });
+  room.save()
+    .then(result => {
+      res.status(201).json({ room: result });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "Failed to save the room: " + err.message });
+    });
 });
 
+
+router.get('/rooms', (req, res) => {
+  Room.find()
+    .then(rooms => {
+      res.status(200).json(rooms);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ message: "Failed to fetch rooms" });
+    });
+});
 
 
 router.post("/foodcat", async (req, res) => {

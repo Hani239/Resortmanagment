@@ -1,9 +1,7 @@
 "use client";
-
-import Link from "next/link";
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import Sidebar from "@/component/Sidebar/page";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router'; // Assuming you might need this for routing
+import Sidebar from "@/component/Sidebar/page"; // Ensure this path is correct
 import { HiPencilAlt } from "react-icons/hi";
 import { CgRemove } from "react-icons/cg";
 
@@ -15,7 +13,31 @@ const RoomData = () => {
   const [capacity, setCapacity] = useState("");
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
+  const [rooms, setRooms] = useState([]); 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/user/rooms`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch rooms');
+        }
+        const data = await response.json();
+        setRooms(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchRooms();
+    return () => { // Cleanup function to prevent setting state on unmounted component
+      setIsLoading(false); // Just a safety measure to mimic cleanup
+    };
+  }, [API_BASE_URL]);
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -32,7 +54,7 @@ const RoomData = () => {
       return;
     }
 
-    setUploading(true); // Indicate upload is in progress
+    setUploading(true);
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "resort-image");
@@ -53,8 +75,6 @@ const RoomData = () => {
       .catch(err => {
         console.error("Error uploading image:", err);
         alert("Failed to upload image.");
-      })
-      .finally(() => {
         setUploading(false);
       });
   };
@@ -63,33 +83,35 @@ const RoomData = () => {
     const roomData = {
       roomname,
       description,
-      price: Number(price), // Convert to number to ensure proper data type
-      capacity: Number(capacity), // Convert to number to ensure proper data type
+      price: Number(price),
+      capacity: Number(capacity),
       imageUrl
     };
 
     fetch(`${API_BASE_URL}/user/createroom`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(roomData)
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Room created:', data);
-      alert('Room created successfully!');
-      setRoomname('');
-      setDescription('');
-      setPrice('');
-      setCapacity('');
-      setImage(null);
-    })
-    .catch(error => {
-      console.error('Error creating room:', error);
-      alert('Failed to create room.');
-    });
+      .then(response => response.json())
+      .then(data => {
+        alert('Room created successfully!');
+        setRoomname('');
+        setDescription('');
+        setPrice('');
+        setCapacity('');
+        setImage(null);
+        setRooms(prevRooms => [...prevRooms, data]); // Update the room list
+      })
+      .catch(error => {
+        console.error('Error creating room:', error);
+        alert('Failed to create room.');
+      })
+      .finally(() => setUploading(false));
   };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="w-full h-full">
@@ -105,10 +127,10 @@ const RoomData = () => {
             <button type="button" className="p-3 bg-red-500 float-right text-white mr-2 rounded-lg" onClick={postDetails}>
               UPDATE
             </button>
-            <input className="border-2 p-2 w-full " type="text" placeholder="Name" value={roomname} onChange={(e) => setRoomname(e.target.value)} />
-            <input className="border-2 p-2 w-full " type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-            <input className="border-2 p-2 w-full " type="text" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />
-            <input className="border-2 p-2 w-full " type="text" placeholder="Capacity" value={capacity} onChange={(e) => setCapacity(e.target.value)} />
+            <input className="border-2 p-2 w-full " type="text" placeholder="Name" value={roomname} onChange={e => setRoomname(e.target.value)} />
+            <input className="border-2 p-2 w-full " type="text" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
+            <input className="border-2 p-2 w-full " type="text" placeholder="Price" value={price} onChange={e => setPrice(e.target.value)} />
+            <input className="border-2 p-2 w-full " type="text" placeholder="Capacity" value={capacity} onChange={e => setCapacity(e.target.value)} />
             <div className="file-field input-field">
               <div className="btn #64b5f6 blue darken-1">
                 <span>Upload Image</span>
@@ -119,6 +141,18 @@ const RoomData = () => {
               Submit Post
             </button>
           </form>
+          <h1>Rooms</h1>
+          <ul>
+            {rooms.map(room => (
+              <li key={room._id}>
+                <h2>{room.roomname}</h2>
+                <p>{room.description}</p>
+                <p>Price: ${room.price}</p>
+                <p>Capacity: {room.capacity}</p>
+                <img src={room.imageUrl} alt={room.roomname} style={{ width: "100px" }} />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
