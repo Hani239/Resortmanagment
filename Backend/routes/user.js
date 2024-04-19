@@ -157,5 +157,15 @@ router.post("/foodcat", async (req, res) => {
   // }
 });
 
+router.get('/foodcat', async (req, res) => {
+  try {
+    const foodCats = await FoodCat.find();
+    res.json(foodCats);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 
 module.exports = router;
