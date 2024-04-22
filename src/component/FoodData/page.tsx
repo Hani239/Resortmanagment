@@ -5,12 +5,12 @@ import { CgRemove } from "react-icons/cg";
 import { HiPencilAlt, HiUserRemove } from "react-icons/hi";
 
 import Sidebar from "@/component/Sidebar/page"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 // import React, { useState, FC, ChangeEvent, FormEvent } from 'react'
 import { GoChevronRight } from "react-icons/go";
 // export default function editTopicForm() {
-    type Props = {};
+type Props = {};
 
 const editTopicForm = (props: Props) => {
     const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -19,20 +19,19 @@ const editTopicForm = (props: Props) => {
     const [category, setCategory] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    // const [phone, setPhone] = useState('');
-    // const [city,setCity]=useState('');
     const router = useRouter();
     const [error, setError] = useState(false);
-    // const [passwordError, setPasswordError] = useState(false);
+
+    interface FoodCat {
+        _id: string;
+        foodcatname: string;
+        category: string;
+        description: string;
+        price: number;
+    }
+
 
     const handleFoodCatAdd = async () => {
-        //   if (password !== c_password) {
-        //     setPasswordError(true)
-        //     return false
-        //   }
-        //   else {
-        //     setPasswordError(false)
-        //   }
         if (!id || !foodcatname || !category || !description || !price) {
             setError(true)
             return false
@@ -74,6 +73,48 @@ const editTopicForm = (props: Props) => {
         }
     };
 
+    // useEffect(() => {
+    //     const fetchFoodCats = async () => {
+    //         try {
+    //             const response = await fetch(`${API_BASE_URL}/user/foodcat`); // Assuming your backend endpoint is '/api/foodcats'
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to fetch data');
+    //             }
+    //             const data = await response.json();
+    //             setFoodCats(data);
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
+
+    //     fetchFoodCats();
+    // }, []);
+    // const YourComponent: React.FC = () => {
+    const [foodCats, setFoodCats] = useState<FoodCat[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/user/foodcat`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setFoodCats(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    // }
+
     return (
         <div className="w-full h-full">
             <div className="w-full md:w-1/4 h-full float-start inline-block p-5">
@@ -106,7 +147,7 @@ const editTopicForm = (props: Props) => {
                             error && !id && <span className='input-error'>Please enter valid id</span>
                         }
 
-                        Name: 
+                        Name:
                         <input
                             type="text"
                             className="border-2 p-2 w-full "
@@ -118,7 +159,7 @@ const editTopicForm = (props: Props) => {
                         }
 
 
-                        Category:  
+                        Category:
                         <input
                             type="text"
                             className="border-2 p-2 w-full "
@@ -129,7 +170,7 @@ const editTopicForm = (props: Props) => {
                             error && !category && <span className='input-error'>Please enter valid Food Category</span>
                         }
 
-                        Description: 
+                        Description:
                         <input
                             type="text"
                             className="border-2 p-2 w-full "
@@ -140,7 +181,7 @@ const editTopicForm = (props: Props) => {
                             error && !description && <span className='input-error'>Please enter valid Description</span>
                         }
 
-                        Price: 
+                        Price:
                         <input
                             type="text"
                             className="border-2 p-2 w-full "
@@ -151,29 +192,19 @@ const editTopicForm = (props: Props) => {
                             error && !price && <span className='input-error'>Please enter valid Price</span>
                         }
                     </form>
-                    <div className=" border-2">
-                        <div>
-                            <Link href={"/editTopic/123"} className="float-right"><HiPencilAlt /></Link>
-                            <CgRemove />
 
-                            <h3 className="text-xl m-2">Italian Pizza</h3>
-                            <div className="text-l m-2">Pizza</div>
-                            <div className="text-l m-2">Italian Flavoured Pizza</div>
-                            <div className="text-l m-2">250</div>
-
+                    {foodCats.map(foodCat => (
+                        <div key={foodCat._id}>
+                            <div className="mt-5 border-2">
+                                <Link href={"/editTopic/123"} className="float-right"><HiPencilAlt /></Link>
+                                <CgRemove />
+                                <h3 className="text-xl m-2">Food Name: {foodCat.foodcatname}</h3>  
+                                <div className="text-l m-2">Category: {foodCat.category}</div>
+                                <div className="text-l m-2">Description: {foodCat.description}</div>
+                                <div className="text-l m-2">Price: ₹{foodCat.price}</div>
+                            </div>
                         </div>
-                    </div>
-                    <div className=" mt-5 border-2">
-                        <div>
-                            <Link href={"/editTopic/123"} className="float-right"><HiPencilAlt /></Link>
-                            <CgRemove />
-
-                            <h3 className="text-xl m-2">Maxican Pizza</h3>
-                            <div className="text-l m-2">Pizza</div>
-                            <div className="text-l m-2">Maxican Flavoured Pizza</div>
-                            <div className="text-l m-2">250</div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
