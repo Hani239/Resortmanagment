@@ -192,44 +192,18 @@ const editTopicForm = (props: Props) => {
                             error && !price && <span className='input-error'>Please enter valid Price</span>
                         }
                     </form>
-                    <div className=" border-2">
-                        <div>
-                            <Link href={"/editTopic/123"} className="float-right"><HiPencilAlt /></Link>
-                            <CgRemove />
 
-                            <h3 className="text-xl m-2">Italian Pizza</h3>
-                            <div className="text-l m-2">Pizza</div>
-                            <div className="text-l m-2">Italian Flavoured Pizza</div>
-                            <div className="text-l m-2">250</div>
-
-                        </div>
-                    </div>
-                    <div className="mt-5 border-2">
-                        <div>
-                            <Link href={"/editTopic/123"} className="float-right"><HiPencilAlt /></Link>
-                            <CgRemove />
-
-                            <h3 className="text-xl m-2">Maxican Pizza</h3>
-                            <div className="text-l m-2">Pizza</div>
-                            <div className="text-l m-2">Maxican Flavoured Pizza</div>
-                            <div className="text-l m-2">250</div>
-                        </div>
-                    </div>
-                    {/* {foodCats.map(() => (
-                        <div key={id}>
-                            <h3>{foodcatname}</h3>
-                            <p>{category}</p>
-                            <p>{description}</p>
-                            <p>{price}</p>
-                        </div>
-                    ))} */}
                     {foodCats.map(foodCat => (
-                        <li key={foodCat._id}>
-                            <h3>{foodCat.foodcatname}</h3>
-                            <p>Category: {foodCat.category}</p>
-                            <p>Description: {foodCat.description}</p>
-                            <p>Price: {foodCat.price}</p>
-                        </li>
+                        <div key={foodCat._id}>
+                            <div className="mt-5 border-2">
+                                <Link href={"/editTopic/123"} className="float-right"><HiPencilAlt /></Link>
+                                <CgRemove />
+                                <h3 className="text-xl m-2">Food Name: {foodCat.foodcatname}</h3>  
+                                <div className="text-l m-2">Category: {foodCat.category}</div>
+                                <div className="text-l m-2">Description: {foodCat.description}</div>
+                                <div className="text-l m-2">Price: ₹{foodCat.price}</div>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>
