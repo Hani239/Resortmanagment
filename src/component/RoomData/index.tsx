@@ -141,7 +141,6 @@ const RoomData = () => {
               Submit Post
             </button>
           </form>
-          
          
           <br /><br /><br />
            {rooms.map(room => (
