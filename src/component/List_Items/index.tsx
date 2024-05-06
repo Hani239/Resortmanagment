@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const List_Items = ({ className = '', ...props }) => {
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const [rooms, setRooms] = useState<Room[]>([]); 
+  const [rooms, setRooms] = useState<Room[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -44,15 +44,15 @@ const List_Items = ({ className = '', ...props }) => {
   }
 
   return (
-   
+
     <div className='flex flex-wrap justify-center'>
-        {rooms.map(room => (
-            <div key={room._id}>
-               {/* <span> {room.roomname} {room.price} 
+      {rooms.map(room => (
+        <div key={room._id}>
+          {/* <span> {room.roomname} {room.price} 
                
                </span>
                <img src={room.imageUrl} alt="room" />  */}
-                {/* <Product
+          {/* <Product
                     src={room.imageUrl}
                     alt={room.imageUrl}
                     name={room.roomname}
@@ -62,34 +62,46 @@ const List_Items = ({ className = '', ...props }) => {
                     price={room.price}                  
                 /> */}
 
- <div className='inline-block'>
-      <div className="relative group border-none rounded-lg grid justify-center items-center snap-center h-80 w-72 sm:h-64 sm:w-56 md:h-80 md:w-88 lg:w-88 lg:h-96 xl:h-64 xl:w-72 m-0 sm:m-2 md:m-2 lg:m-2">
-        <div>
-          <img
-            src={room.imageUrl}
-            alt={"Room"}
-            className='h-full w-full group-hover:scale-110 transition duration-500 cursor-pointer'
-            
-          />
-        </div>
-        <div className="absolute bottom-3 flex justify-center w-full">
-          <Link href="/ViewProduct">
-            <Button text={'Select options'} className='transition duration-500 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-5 group-hover:scale-110' />
-          </Link>
-        </div>
-      </div>
-     
-      <div className='relative flex flex-col items-center overflow-hidden pb-8'>
-        <div className='flex absolute pt-0 text-lg font-inter'>{room.roomname}</div>
-        <div className='flex text-lg mt-5'></div>
-        <div className='flex b-0 py-2 font-inter pt-5'>₹{room.price}</div>
-      </div>
-    </div> 
+          <div className='inline-block'>
+            <div className="relative group border-none rounded-lg grid justify-center items-center snap-center h-80 w-72 sm:h-64 sm:w-56 md:h-80 md:w-88 lg:w-88 lg:h-96 xl:h-64 xl:w-72 m-0 sm:m-2 md:m-2 lg:m-2">
+              <div>
+                <img
+                  src={room.imageUrl}
+                  alt={"Room"}
+                  className='h-full w-full group-hover:scale-110 transition duration-500 cursor-pointer'
 
+                />
+              </div>
+              <div className="absolute bottom-3 flex justify-center w-full">
+                {/* <Link href="/ViewProduct">
+            <Button text={'Select options'} className='transition duration-500 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-5 group-hover:scale-110' />
+          </Link> */}
+                <Link href={{
+                  pathname: '/ViewProduct',
+                  query:
+                  {
+                    name: `${room.roomname}`,
+                    desc: `${room.discription}`,
+                    price: `${room.price}`,
+                    imgurl: `${room.imageUrl}`
+                  }
+                }}>
+                  <Button text={'Select options'} className='transition duration-500 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-5 group-hover:scale-110' />
+                </Link>
+              </div>
             </div>
-        ))}
+
+            <div className='relative flex flex-col items-center overflow-hidden pb-8'>
+              <div className='flex absolute pt-0 text-lg font-inter'>{room.roomname}</div>
+              <div className='flex text-lg mt-5'></div>
+              <div className='flex b-0 py-2 font-inter pt-5'>₹{room.price}</div>
+            </div>
+          </div>
+
+        </div>
+      ))}
     </div>
-  
+
   );
 }
 

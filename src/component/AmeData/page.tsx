@@ -17,9 +17,9 @@ export default function Amenity(){
             <button className="p-3 bg-red-500 float-right text-white mr-2 rounded-lg">        
                  ADD
             </button>
-            <button className="p-3 bg-red-500 float-right text-white mr-2 rounded-lg">
+            {/* <button className="p-3 bg-red-500 float-right text-white mr-2 rounded-lg">
                 UPDATE
-            </button>
+            </button> */}
            <br />
        
          <br /><br />
