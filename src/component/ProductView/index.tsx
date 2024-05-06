@@ -22,11 +22,11 @@ const View = ({ className, children, ...props }: Props) => {
                     <div className='flex  w-full sm:w-full md:w-full lg:w-full aspect-auto  xl:w-5/6  justify-center  object-cover'>
                         <Image src={MainI} alt="Product Image" className='w-full h-full' />
                     </div>
-                    <div className='flex flex-wrap w-full md:w-full lg:w-full xl:w-1/6 align-top  lg:h-72'>
+                    {/* <div className='flex flex-wrap w-full md:w-full lg:w-full xl:w-1/6 align-top  lg:h-72'>
                         <Image src={Side1} alt="Product Image " className='aspect-square shrink-0 w-1/3 md:w-1/3 lg:w-1/3  p-1 xl:w-full lg:aspect-square lg:h-40 xl:h-auto opacity-80 hover:opacity-100' />
                         <Image src={Side2} alt="Product Image " className='aspect-square shrink-0 w-1/3 md:w-1/3 lg:w-1/3 xl:w-full lg:aspect-square lg:h-40 xl:h-auto p-1 opacity-80 hover:opacity-100' />
                         <Image src={Side3} alt="Product Image " className='aspect-square shrink-0 w-1/3 md:w-1/3 lg:w-1/3 xl:w-full lg:aspect-square lg:h-40 xl:h-auto p-1 opacity-80 hover:opacity-100' />
-                    </div>
+                    </div> */}
                 </div>
                 <div className='flex flex-1 flex-col h-auto md:pl-14 pt-5'>
                     <div className='font-inter text-sm'>Featured Room</div>

@@ -124,9 +124,9 @@ const RoomData = () => {
             <button type="button" className="p-3 bg-red-500 float-right text-white mr-2 rounded-lg" onClick={postDetails}>
               ADD
             </button>
-            <button type="button" className="p-3 bg-red-500 float-right text-white mr-2 rounded-lg" onClick={postDetails}>
+            {/* <button type="button" className="p-3 bg-red-500 float-right text-white mr-2 rounded-lg" onClick={postDetails}>
               UPDATE
-            </button>
+            </button> */}
             <input className="border-2 p-2 w-full " type="text" placeholder="Name" value={roomname} onChange={e => setRoomname(e.target.value)} />
             <input className="border-2 p-2 w-full " type="text" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
             <input className="border-2 p-2 w-full " type="text" placeholder="Price" value={price} onChange={e => setPrice(e.target.value)} />
@@ -153,7 +153,7 @@ const RoomData = () => {
               </div>
               <div className="w-3/4 inline-block pl-5">
                 <h3 className="text-xl m-2">{room.roomname}</h3>
-                <div className="text-l m-2">Price: ${room.price}</div>
+                <div className="text-l m-2">Price: ₹{room.price}</div>
                 <div className="text-l m-2">Capacity: {room.capacity} Persons</div>
                 <div className="text-l m-2">{room.description}</div>
                 </div>

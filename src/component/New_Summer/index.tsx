@@ -18,7 +18,7 @@ const New_Summer = ({ className, children, ...props }: Props) => {
     const abortController = new AbortController();
     const fetchRooms = async () => {
       try {
-        const response = await fetch(`${ API_BASE_URL }/user/rooms`, { signal: abortController.signal });
+        const response = await fetch(`${API_BASE_URL}/user/rooms`, { signal: abortController.signal });
         if (!response.ok) {
           throw new Error('Failed to fetch rooms');
         }
@@ -69,7 +69,19 @@ const New_Summer = ({ className, children, ...props }: Props) => {
                     />
                   </div>
                   <div className="absolute bottom-3 flex justify-center w-full">
-                    <Link href="/ViewProduct">
+                    {/* <Link href="/ViewProduct">
+                      <Button text={'Select options'} className='transition duration-500 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-5 group-hover:scale-110' />
+                    </Link> */}
+                    <Link href={{
+                      pathname: '/ViewProduct',
+                      query:
+                      {
+                        name: `${room.roomname}`,
+                        desc: `${room.discription}`,
+                        price: `${room.price}`,
+                        imgurl: `${room.imageUrl}`
+                      }
+                    }}>
                       <Button text={'Select options'} className='transition duration-500 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-5 group-hover:scale-110' />
                     </Link>
                   </div>

@@ -33,14 +33,14 @@ export default function editTopicForm(){
                    </center>
                 </div>    
             </Link>
-            <Link href="/FoodData">
+            {/* <Link href="/FoodData">
                 <div className="border-2 w-72 p-5 h-64">
                 <center>
                     <Image src={FoodC} alt={""} height={180}/>
                     <div>Food Category Data</div>
                 </center>
                 </div>    
-            </Link>
+            </Link> */}
             <Link href="/FoodData">
                 <div className="border-2 w-72 p-5 h-64">
                 <center>

@@ -90,6 +90,8 @@ const editTopicForm = (props: Props) => {
     //     fetchFoodCats();
     // }, []);
     // const YourComponent: React.FC = () => {
+
+    //Fetch Data
     const [foodCats, setFoodCats] = useState<FoodCat[]>([]);
 
     useEffect(() => {
@@ -130,9 +132,9 @@ const editTopicForm = (props: Props) => {
                         {/* <button className="w-full h-14 p-3 text-lg bg-[#E46A4B] font-inter text-white border border-dashed border-white rounded-lg hover:bg-gray-900 " onClick={handleFoodCatAdd} >
                             <div className="inline-block"> ADD </div><div className="inline-block"> <GoChevronRight /> </div>
                         </ button> */}
-                        <button className="p-3 bg-red-500 float-right text-white mr-2 rounded-lg">
+                        {/* <button className="p-3 bg-red-500 float-right text-white mr-2 rounded-lg">
                             UPDATE
-                        </button>
+                        </button> */}
                         <br />
 
                         <br /><br />

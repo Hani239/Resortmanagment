@@ -167,5 +167,16 @@ router.get('/foodcat', async (req, res) => {
   }
 });
 
+router.get('/createuser', async (req, res) => {
+  try {
+    // const foodCats = await FoodCat.find();
+    const userA = await User.find();
+    res.json(userA);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
 
 module.exports = router;
