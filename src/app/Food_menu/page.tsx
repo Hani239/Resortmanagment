@@ -20,7 +20,7 @@ export default function Home() {
         <Category></Category>
     </div>
     <div>
-      <Special />
+      {/* <Special /> */}
     </div>
 
 

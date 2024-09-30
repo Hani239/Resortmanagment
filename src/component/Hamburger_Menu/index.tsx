@@ -46,7 +46,7 @@ const HamburgerMenu = () => {
                 <div className="absolute right-0 w-screen mt-2  bg-white border ">
                     <div className="py-1">
                         <a href="/" className="block font-playpen text-xl px-4 py-2 border-b text-gray-800 ">Home</a>
-                        <div className="block relative font-playpen text-xl px-4 py-2 pb-4 border-b text-gray-800 " onClick={toggleClothing}>Clothing
+                        {/* <div className="block relative font-playpen text-xl px-4 py-2 pb-4 border-b text-gray-800 " onClick={toggleClothing}>Clothing
                             <svg
                                 className={`w-6 h-6 absolute right-2 top-3 transition-transform ${isClothingOpen ? 'transform rotate-180' : ''
                                     }`}
@@ -74,8 +74,9 @@ const HamburgerMenu = () => {
                                     </div>
                                 )}
                             </div>
-                        </div>
-                        <Link href="/List" className="block font-playpen text-xl px-4 py-2 border-b text-gray-800 ">Toys</Link>
+                        </div> */}
+                        <Link href="/List" className="block font-playpen text-xl px-4 py-2 border-b text-gray-800 ">Accomodation</Link>
+                        <Link href="/List" className="block font-playpen text-xl px-4 py-2 border-b text-gray-800 ">Events</Link>
                         <a href="#" className="block font-playpen text-xl px-4 py-2 border-b text-gray-800 ">About</a>
                         <a href="#" className="block font-playpen text-xl px-4 py-2 text-gray-800 ">Contact</a>
                     </div>

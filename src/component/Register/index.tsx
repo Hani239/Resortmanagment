@@ -10,7 +10,7 @@ import "./style.css"
 type Props = {};
 
 const Register = (props: Props) => {
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,7 +30,7 @@ const Register = (props: Props) => {
     else {
       setPasswordError(false)
     }
-    if (!email || !password || !c_password || !username || !address || !phone) {
+    if (!username || !email || !password || !c_password || !address || !phone) {
       setError(true)
       return false
     }
@@ -38,62 +38,36 @@ const Register = (props: Props) => {
       setError(false)
     }
 
-    const teamData = {
-      username,
-      password,
-      email,
-      address,
-      phone
-    };
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/user/createuser`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(teamData),
-      });
-
-      if (!response.ok) {
-        const message = await response.text();
-        throw new Error("Request failed: " + message);
+    // const teamData = {
+    //   username,
+    //   password,
+    //   email,
+    //   address,
+    //   phone
+    // };
+    let response = await fetch('http://localhost:3000/api/user',{
+      method: "POST",
+      body: JSON.stringify({username, email, password, address, phone})
+    })
+    response = await response.json();
+    if(response.success){
+      const {result} = response
+      delete result.password;
+      localStorage.setItem("user",JSON.stringify(result));
+      if(props.redirect?.order){
+        router.push('/CheckOut')
       }
-
-      const data = await response.json();
-      alert("Registered Successfully")
-      router.push("/")
-      console.log("Registered Successfully", data);
-    } catch (error) {
-      alert("Registration Fail")
-      console.error("Registration Fail", error);
+      else{
+        router.push("/");
+      }
+      alert("Resort User Registered Successfully")
     }
   };
 
 
-
-
-  // console.log(email, password, c_password, username)
-  // let response = await fetch("http://localhost:3000/api/resortapi", {
-  //   method: "POST",
-  //   body: JSON.stringify({ email, password, username })
-  // })
-  // response = await response.json();
-  // console.log(response);
-  // if (response.success) {
-  //   alert("Registered Successfully")
-  // }
-  // if (response.success) {
-  //   console.log(response);
-  // const { result } = response
-  // delete result.password;
-  // localStorage.setItem("demoUser", JSON.stringify(result))
-  // router.push("/")
-  // }
-
   return (
     <>
-      <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
+      <div className="relative flex flex-col items-center justify-center overflow-hidden">
         <div className="w-full px-4 lg:px-0 sm:max-w-xl">
           <div className="p-6 rounded-md border-2 shadow-md">
             <div className="">

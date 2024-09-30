@@ -6,10 +6,12 @@ import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Select_options from '../Button';
 import Button from '../Button';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 type Props = { src: string | StaticImport, priceCss: string, alt: string, name: string, review: string, bg: string, real_price: number, price: number, rating: string } & React.HTMLAttributes<HTMLElement>;
 
 const Product = ({ src, alt, className, bg, priceCss, name, real_price, price, review, ...props }: Props) => {
+  const router=useRouter();
   return (
 
     <div className='inline-block'>
