@@ -85,7 +85,8 @@ const Blog = ({ className, children, ...props }: Props) => {
             <div className='4'>
               <p className='md:font-inter text-xs mb-8 md:text-xs'>We’re committed to using the highest quality Food Items and ensure they are Hygenic, so they are perfect for Your Health.
               </p>
-              <Link href={'/Food_menu'} ></Link><Button text="Explore Menu"></Button>
+              <Link href='/Food_menu' ><Button text="Explore Menu"></Button></Link>
+              {/* <Link href='/Food_menu' ></Link><Button text="Explore Menu"></Button> */}
               {/* <a href='#' className='font-playpen text-bold mb-8'></a> */}
             </div>
           </div>

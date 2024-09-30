@@ -4,48 +4,72 @@ import Product from '@/component/Products'
 import React, { useState, useEffect } from 'react';
 import Button from '../Button';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 type Props = {} & React.HTMLAttributes<HTMLElement>;
 
 const New_Summer = ({ className, children, ...props }: Props) => {
+  const [rooms, setRooms] = useState([]);
+  const router = useRouter();
 
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const [rooms, setRooms] = useState<Room[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
+  // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  // const [rooms, setRooms] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
+  // const [error, setError] = useState('');
 
+  // useEffect(() => {
+  //   const abortController = new AbortController();
+  //   const fetchRooms = async () => {
+  //     try {
+  //       const response = await fetch(http://localhost:3000/api/admin/room, { signal: abortController.signal });
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch rooms');
+  //       }
+  //       const data = await response.json();
+  //       setRooms(data);
+  //     } catch (err) {
+  //       if (!abortController.signal.aborted) {
+  //         setError(err.message);
+  //       }
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   fetchRooms();
+  //   return () => {
+  //     abortController.abort();
+  //   };
+  // }, []);
+
+  // if (error) {
+  //   return <p>Error: {error}</p>;
+  // }
+
+  // if (isLoading) {
+  //   return <p>Loading...</p>;
+  // }
   useEffect(() => {
-    const abortController = new AbortController();
-    const fetchRooms = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/user/rooms`, { signal: abortController.signal });
-        if (!response.ok) {
-          throw new Error('Failed to fetch rooms');
-        }
-        const data = await response.json();
-        setRooms(data);
-      } catch (err) {
-        if (!abortController.signal.aborted) {
-          setError(err.message);
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    loadRooms();
+  }, []);
 
-    fetchRooms();
-    return () => {
-      abortController.abort();
-    };
-  }, [API_BASE_URL]);
+  const loadRooms = async (_id) => {
 
-  if (error) {
-    return <p>Error: {error}</p>;
+    let response = await fetch("http://localhost:3000/api/admin/room/" + _id);
+    console.log(response);
+    response = await response.json();
+    if (response.success) {
+      setRooms(response.result)
+    } else {
+      alert("Room List Not Loading")
+    }
   }
+  
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  const handleClick = (roomId: string) => {
+    // Instead of router.push, we use window.location.assign to navigate and reload
+    window.location.assign(`/ViewProduct/?id=${roomId}`);
+  };
 
   return (
     <>
@@ -59,12 +83,12 @@ const New_Summer = ({ className, children, ...props }: Props) => {
 
 
               <div className='inline-block'>
-                <div className="relative group border-none rounded-lg grid justify-center items-centersnap-center sm:snap-start m-5 w-[270px] h-[250px] md:w-96 md:h-72">
+                <div className="relative group border-none rounded-lg grid justify-center items-centersnap-center sm:snap-start m-5 w-[270px] h-[250px] md:w-96 md:h-72 flex-shrink-0 overflow-hidden">
                   <div>
                     <img
-                      src={room.imageUrl}
+                      src={room.img_path}
                       alt={"Room"}
-                      className='h-full w-full group-hover:scale-110 transition duration-500 cursor-pointer'
+                      className='h-full w-full group-hover:scale-110 transition duration-500 cursor-pointer object-cover object-center'
 
                     />
                   </div>
@@ -72,18 +96,19 @@ const New_Summer = ({ className, children, ...props }: Props) => {
                     {/* <Link href="/ViewProduct">
                       <Button text={'Select options'} className='transition duration-500 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-5 group-hover:scale-110' />
                     </Link> */}
-                    <Link href={{
+                    {/* <Link href={{
                       pathname: '/ViewProduct',
                       query:
                       {
-                        name: `${room.roomname}`,
-                        desc: `${room.discription}`,
-                        price: `${room.price}`,
-                        imgurl: `${room.imageUrl}`
+                        name: ${room.roomname},
+                        desc: ${room.description},
+                        price: ${room.price},
+                        imgurl: ${room.img_path}
                       }
-                    }}>
-                      <Button text={'Select options'} className='transition duration-500 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-5 group-hover:scale-110' />
-                    </Link>
+                    }}> */}
+                    {/* <Link href={`/ViewProduct/?id=${room._id}`}> */}
+                      <Button text={'Select options'} onClick={()=>handleClick(room._id)} className='transition duration-500 ease-in-out opacity-0 group-hover:opacity-100 group-hover:-translate-y-5 group-hover:scale-110' />
+                    {/* </Link> */}
                   </div>
                 </div>
 
@@ -104,147 +129,3 @@ const New_Summer = ({ className, children, ...props }: Props) => {
 }
 
 export default New_Summer
-// 'use client';
-// import Product from '@/component/Products'
-// import React from 'react'
-// import Img1 from '@/Img/images/Images/room/b2.jpg'
-// import Img2 from '@/Img/images/Images/room/bee6.jpg'
-// import Img3 from '@/Img/images/Images/room/bv1.jpg'
-// import Img4 from '@/Img/images/Images/room/farm1.jpg'
-// import Img5 from '@/Img/images/Images/room/glass4.jpg'
-// import Img6 from '@/Img/images/Images/room/gio1.jpg'
-// import Img7 from '@/Img/images/Images/room/mud1.jpg'
-// import Img8 from '@/Img/images/Images/room/nest1.jpg'
-// import Img9 from '@/Img/images/Images/room/hc1.jpg'
-// import { Span } from 'next/dist/trace'
-// import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-
-
-// interface Product {
-//   id: number;
-//   src: string | StaticImport;
-//   alt: string;
-//   name: string;
-//   price: number;
-//   review: string;
-//   real_price: number;
-//   rating: string;
-// }
-// const products: Product[] = [
-//   {
-//     id: 1,
-//     src: Img1,
-//     alt: 'Barrel Room',
-//     name: 'Barrel Room',
-//     price: 7000,
-//     review: '',
-//     real_price:9000,
-//     rating: '',
-//   },
-//   {
-//     id: 2,
-//     src: Img2,
-//     alt: 'Bee Hive',
-//     name: 'Bee Hive',
-//     price: 7000,
-//     review: '',
-//     real_price:9000,
-//     rating: '',
-//   },
-//   {
-//     id: 3,
-//     src: Img3,
-//     alt: 'BougainVillea Cabins',
-//     name: 'BougainVillea Cabins',
-//     price: 7000,
-//     review: '',
-//     real_price:9000,
-//     rating: '',
-//   },
-//   {
-//     id: 4,
-//     src: Img4,
-//     alt: 'Farmers Room',
-//     name: 'Farmers Room',
-//     price: 7000,
-//     review: '',
-//     real_price:9000,
-//     rating: '',
-//   },
-//   {
-//     id: 5,
-//     src: Img5,
-//     alt: 'Glass Room',
-//     name: 'Glass Room',
-//     price: 7000,
-//     review: '',
-//     real_price:9000,
-//     rating: '',
-//   },
-//   {
-//     id: 6,
-//     src: Img6,
-//     alt: 'Geo Desic',
-//     name: 'Geo Desic',
-//     price: 9000,
-//     review: '',
-//     real_price:9000,
-//     rating: '',
-//   },
-//   {
-//     id: 7,
-//     src: Img7,
-//     alt: 'Mud Rooms',
-//     name: 'Mud Rooms',
-//     price: 7000,
-//     review: '',
-//     real_price:9000,
-//     rating: '',
-//   },
-//   {
-//     id: 8,
-//     src: Img8,
-//     alt: 'Birds Nest',
-//     name: 'Birds Nest',
-//     price: 8000,
-//     review: '',
-//     real_price:9000,
-//     rating: '',
-//   },
-//   {
-//     id: 9,
-//     src: Img9,
-//     alt: 'Historic Room',
-//     name: 'Historic Room',
-//     price: 7000,
-//     review: '',
-//     real_price:9000,
-//     rating: '',
-//   },
-// ];
-
-// type Props = {} & React.HTMLAttributes<HTMLElement>;
-
-// const New_Summer = ({ className, children, ...props }: Props) => {
-//   return (
-//     <>
-//       <div className='md:mx-20 mx-5'>
-
-//         <div className={`snap-mandatory snap-x wrapper flex  overflow-x-auto scrollbar-thin scrollbar-thumb-[#E8EEEF] ${className}`}>
-//         {products.map((product) => (
-//             <Product
-//               src={product.src}
-//               alt={product.alt}
-//               name={product.name}
-//               bg={'snap-center sm:snap-start m-5 w-[270px] h-[250px] md:w-96 md:h-72'}
-//               className=''
-//               priceCss='mt-10'
-//               price={product.price} review={product.review} real_price={product.real_price} rating={product.rating} />
-//           ))}
-//         </div>
-//       </div>
-//     </>
-//   )
-// }
-
-// export default New_Summer

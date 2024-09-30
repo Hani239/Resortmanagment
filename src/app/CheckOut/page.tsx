@@ -4,16 +4,9 @@ import Nav from "@/component/Nav_Exp";
 
 export default function Home() {
     return (
-        <main className=''>
-            <div className="relative flex z-10">
-                <Nav></Nav>
-            </div>
-            <div>
+        <div>
                 <CheckOut/>
-            </div>
-            <div className="relative">
-                <Footer />
-            </div>
-        </main>
+                </div>
+            
     )
 }

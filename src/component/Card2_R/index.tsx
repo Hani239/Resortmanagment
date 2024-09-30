@@ -32,9 +32,9 @@ const Categories = (props: Props) => {
       <div className=' bg-[#f7f7f7] rounded-tl-[85px]  rounded-br-[85px] p-5 md:m-5 max-[767px]:my-5 h-96 w-80 flex flex-col justify-center items-center md:flex-1 flex-wrap'>
         <Image src={Pin} alt='Pin' height={60} width={60} className='flex m-2' />
         <p className='flex text-center font-bold text-xl m-2 '>Find us</p>
-        <p className='flex text-center font-light text-xs mt-2'>7310 Fieldstone Lane <br />Brooklyn, NY 11220 </p>
+        <p className='flex text-center font-light text-xs mt-2'>Gram Bharti Cross Road, <br /> Limbodra, Road, Mahudi, Gujarat 382721</p>
         <p className='flex text-center font-light text-xs mb-2'> Mon – Fri: 9am – 3pm</p>
-        <Link href={'https://www.google.com/maps/place/LDRP+Institute+of+Technology+and+Research/@23.2393335,72.6361559,17z/data=!3m1!4b1!4m6!3m5!1s0x395c2b933477ba9f:0xe440409e66bea08a!8m2!3d23.2393286!4d72.6387308!16s%2Fm%2F07s50xh?entry=ttu'}><Button text="Get Direction" className='py-2 m-2' /></Link>
+        <Link href={'https://www.google.com/maps/place/Taj+Gandhinagar+Resort+%26+Spa/@23.3755394,72.6910161,17z/data=!3m1!4b1!4m9!3m8!1s0x395c337e41745715:0x1af5b19dec45b1b1!5m2!4m1!1i2!8m2!3d23.3755394!4d72.6910161!16s%2Fg%2F11khcghcdw?entry=ttu'}><Button text="Get Direction" className='py-2 m-2' /></Link>
       </div>
     </div>
   )
